@@ -1,0 +1,21 @@
+class Solution {
+public:
+    
+    
+    int mySqrt(int x) {
+        return MethodNewton(x,0);
+    }
+    
+    
+    int MethodNewton(double x, double x0){
+        if(abs(x0*x0-x)<=0.00001){
+             return x0;
+    }
+        x0=(x0+x/x0)/2;
+        return MethodNewton(x,x0);
+        
+}
+};
+
+
+ 
