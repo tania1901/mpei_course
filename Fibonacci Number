@@ -1,0 +1,7 @@
+class Solution {
+public:
+    int fib(int N) {
+        double GoldenSection=(1+sqrt(5))/2;
+        return (pow(GoldenSection,N)-pow(1-GoldenSection, N))/(sqrt(5));
+    }
+};
