@@ -1,0 +1,75 @@
+//https://leetcode.com/problems/add-two-numbers/
+/**
+ * Definition for singly-linked list.
+ * struct ListNode {
+ *     int val;
+ *     ListNode *next;
+ *     ListNode(int x) : val(x), next(NULL) {}
+ * };
+ */
+class Solution {
+public:
+    ListNode* addTwoNumbers(ListNode* l1, ListNode* l2) {
+        ListNode *L;
+        ListNode *l11=l1;
+        ListNode *l22=l2;
+        ListNode *REZ;
+        int n1=getLenght(l11);
+        int n2=getLenght(l22);
+        if (!l1   && !l2 )  return NULL;
+        else {
+        L=new ListNode(0);
+        
+        REZ=L;
+        int k=0;
+        for (int i=0; i<min(n1,n2);i++){
+         k=k+l11->val+l22->val;
+            L->next=new ListNode(k%10);
+            k=k/10;
+            L=L->next;
+            l11=l11->next;
+            l22=l22->next;
+        }
+           if (n1>n2){          
+            for (int i=n2;i<n1;i++){
+                k += l11->val;
+                L->next = new ListNode(k%10);
+			    l11 = l11->next;
+                L=L->next;
+                k =k/ 10;
+            }
+        }else{
+            for (int i=n1;i<n2;i++){
+                k += l22->val;
+                L->next = new ListNode(k%10);
+			    l22 = l22->next;
+                L=L->next;
+                k =k/ 10;
+            }
+        }
+        if (k>0){
+            L->next = new ListNode(k%10);
+        }
+	
+      
+         }
+        return REZ->next;
+    }
+    
+    int getLenght(ListNode *List){
+        
+int count = 0;
+ListNode *temp = List;
+while(temp)  {
+count++;
+temp = temp->next;
+}
+return count;
+}
+   
+};
+
+
+
+
+       
