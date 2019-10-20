@@ -1,4 +1,4 @@
-//https://leetcode.com/problems/redundant-connection/submissions/
+//https://leetcode.com/problems/redundant-connection/
 
 class UnionFind {
 	friend class Solution;
