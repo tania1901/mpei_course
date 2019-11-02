@@ -1,0 +1,54 @@
+//https://leetcode.com/problems/broken-calculator/description/
+
+Мое решение (не хочу потерять, тк код нравится. Ошибка времени)
+
+class Solution {
+public:
+    int brokenCalc(int X, int Y) {
+        int k=0;
+        if (X>Y){ k= X-Y;}
+        if ((Y%2==0)&&(X%2==0)){
+            if (Y%(X-1)==0){
+                     X=X-1;
+                     k++;
+                     while(X<Y){
+                        k++;
+                        X=X*2;
+                        }
+             }else{
+                    while (X<=Y){
+                         X=X*2;
+                         k++;}
+                   if (X>Y){
+                          k=k+(X-Y);}
+                }}
+        else{             
+               while (X<Y){ 
+                    X=X-1;
+                    k++;
+                    if (X<Y){
+                        X=X*2;
+                        k++;
+                }}
+                if (X>Y){
+                    k=k+(X-Y);}
+          }
+     return k;    
+    }
+};
+
+
+Так сказать чужое
+
+class Solution {
+public:
+     int BrokenCalc(int X, int Y)
+        {
+            if (Y <= X)
+                return X - Y;
+
+            if (Y % 2 == 1)
+                return BrokenCalc(X, Y + 1) + 1;
+            else return BrokenCalc(X, Y / 2) + 1;
+        }
+};
