@@ -1,0 +1,21 @@
+//https://leetcode.com/problems/course-schedule/
+
+class Solution {
+public:
+    bool canFinish(int numCourses, vector<vector<int>>& prerequisites) {
+        vector<int>depends(numCourses);//пусть будет пара [0,1] -чтобы взять закончи
+       vector<vector<int>>graph(numCourses);// будем создавать вектор,хранящий исходное в удобном виде (размером колво-курсов на 2)
+        for(auto p: prerequisites){
+           graph[p[1]].push_back(p[0]);//запихиваем graph[1] число 0
+           depends[p[0]]++;//увеличиваем число курсов, зависящих от p[0] (0)
+        }//на выходе мы преобразовали структуру и получили вектор "зависимых курсов"
+        for(int i = 0; i < numCourses; i++){
+            int j = 0;// пробегая вектор мы проверяем, есть ли зависимые курсы
+            for(; j < numCourses; j++) if(depends[j] == 0) break;//если такого нет, то проверяем
+            if(j == numCourses) return false;//если цикл пройден, j соответствует число курсов,те все курсы зависят от чего-либо
+            depends[j] = -1;//а если нет, то мы "вычеркиваем зависимость от курса", тк этот курс "нулевой"
+            for(auto x: graph[j]) depends[x]--;//пробегая граф, вычеркваем этот курс отовсюду
+        }
+        return true;
+    }
+};
