@@ -1,0 +1,21 @@
+//https://leetcode.com/problems/find-the-town-judge/
+
+class Solution {
+public:
+    int findJudge(int N, vector<vector<int>>& trust) {
+       vector<int>BeliveToMe(N);// будем создавать вектор,хранящий исходное в удобном виде 
+       vector<int>BeliveI(N);
+       for(auto p: trust){
+          BeliveToMe[p[1]-1]++;//вектор "ему верят"
+          BeliveI[p[0]-1]++;//вектор "он верит"
+        }
+        
+        int i=0;
+        bool fl=false;
+        while((!fl)&&(i < N)){
+            if ((BeliveToMe[i]==(N-1))&&(BeliveI[i]==0)) fl=true;//если i верит 0(никому), а ему верят N-1
+            i++; }
+        if (fl){ return i;}
+            else return -1;
+    }
+};
