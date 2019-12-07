@@ -1,0 +1,18 @@
+//https://leetcode.com/problems/length-of-last-word/
+
+class Solution {
+public:
+    int lengthOfLastWord(string s) {
+        int size = s.length();
+		if (size == 0) return 0;
+		int i = size;//бегунок
+        while (s[i - 1] == ' '){//съедаем все пробелы после слова
+			i--;
+			size--;
+		}
+        for (i; i > 0; i--){
+			if (s[i-1] == ' ') break;
+    	}
+		return size - i;
+    }
+};
