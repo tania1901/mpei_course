@@ -1,0 +1,29 @@
+https://leetcode.com/problems/merge-two-sorted-lists/
+
+/**
+ * Definition for singly-linked list.
+ * struct ListNode {
+ *     int val;
+ *     ListNode *next;
+ *     ListNode(int x) : val(x), next(NULL) {}
+ * };
+ */
+class Solution {
+public:
+    ListNode* mergeTwoLists(ListNode* l1, ListNode* l2) {
+        if (!l1) return l2;
+        if (!l2) return l1;
+        
+        ListNode* k;
+        if (l1->val < l2->val){//выполняем сортировку по величине
+            k = l1;
+            l1 = l1->next;//передвинули,тк считали элемент
+        }else{
+            k = l2;
+            l2 = l2->next;//передвинули,тк считали элемент
+            }
+        k->next = mergeTwoLists(l1, l2);//назначаем следующий рекурсивно
+        
+        return k;
+    }
+};
