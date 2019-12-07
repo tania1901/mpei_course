@@ -1,0 +1,34 @@
+//https://leetcode.com/problems/roman-to-integer/
+
+class Solution {
+public:
+   
+    int romanToInt1(string s) {
+    int arabic[] = {1, 5, 10, 50, 100, 500, 1000};
+    char roman[] = {'I', 'V', 'X', 'L', 'C', 'D', 'M'};
+    int idx = find(roman, roman+sizeof(roman)/sizeof(roman[0]), s.back())-roman;
+    int res = arabic[idx];
+    for ( int i = 1; i < s.size(); i++) {
+        int idx1 = find(roman, roman+sizeof(roman)/sizeof(roman[0]), s[i-1])-roman;
+        int idx2 = find(roman, roman+sizeof(roman)/sizeof(roman[0]), s[i])-roman;
+        if (arabic[idx1] < arabic[idx2])
+            res -= arabic[idx1];
+        else
+            res += arabic[idx1];
+    }
+    return res;
+}
+
+int romanToInt(string s) {
+    map<char, int> myMap = {{'I',1}, {'V',5}, {'X',10}, {'L',50}, {'C',100}, {'D',500}, {'M',1000}};
+    int res = myMap[s.back()];
+    for ( int i = 1; i < s.size(); i++) {
+        if (myMap[s[i-1]] < myMap[s[i]])//если число получается больше (типа VI), то прибавить
+            res -= myMap[s[i-1]];
+        else
+            res += myMap[s[i-1]];//иначе отнять
+    }
+    return res;
+}  
+    
+};
