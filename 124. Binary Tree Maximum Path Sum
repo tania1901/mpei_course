@@ -1,0 +1,50 @@
+//https://leetcode.com/problems/binary-tree-maximum-path-sum/
+
+/**
+ * Definition for a binary tree node.
+ * struct TreeNode {
+ *     int val;
+ *     TreeNode *left;
+ *     TreeNode *right;
+ *     TreeNode(int x) : val(x), left(NULL), right(NULL) {}
+ * };
+ */
+/*I utilize the fact that we can pass a global variable to recursive calls.
+
+For each recursive call:
+
+Calculate the max sum for the Left subtree path
+Calculate the max sum for the Right subtree path
+Check if ending the path by connecting the root to both the Left and Right subtree path is most optimal. If we have a new sum, update the global sum.
+We found a local sum but there may be a larger path sum somewhere else so we must return the max of
+a) Stopping at the current node
+b) Taking the Left subtree path + current node
+c) Taking the Right subtree path + current node
+#include<bits/stdc++.h>
+*/
+class Solution {
+public:
+    int calculateMaxSum(TreeNode* root, int& global_sum){
+        if (root == NULL){
+            return 0;
+        }
+        int left_sum = calculateMaxSum(root->left, global_sum);
+        int right_sum = calculateMaxSum(root->right, global_sum);
+        int curr_sum = root->val;
+        int node_val = root->val;
+        
+        if (curr_sum + left_sum > curr_sum)
+            curr_sum += left_sum;
+        if(curr_sum + right_sum > curr_sum)
+            curr_sum += right_sum;
+        
+        if (curr_sum > global_sum)
+            global_sum = curr_sum;
+        return max(node_val, max(node_val + left_sum, node_val + right_sum));
+    }
+    int maxPathSum(TreeNode* root) {
+        int global_max = INT_MIN;
+        calculateMaxSum(root, global_max);
+        return global_max;
+    }
+};
