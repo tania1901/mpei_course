@@ -1,0 +1,35 @@
+//https://leetcode.com/problems/day-of-the-week/
+
+class Solution {
+public:
+    string dayOfTheWeek(int day, int month, int year) {
+       
+      //количество дней для не високосного года
+      static const int Months[12] = {31,28,31,30,31,30,31,31,30,31,30,31};
+      
+      //1ое января 1971 == Friday, отсюда и будем отталкиваться
+      static const string res[7] = {"Friday", "Saturday", "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday"};
+      
+      int totalDays = (year-1971)*365; //предположим,что каждый год по 365 дней
+	  
+	  //колво високосных лет с 1971
+      int leapYears = 0;
+      for(int i = 1972; i <= year; i+=4)
+        if((i%4==0 && i%100!=0) || i%400 == 0)
+          leapYears++;
+
+      //Добавляем нужное число "високосных дней"
+      totalDays += leapYears; 
+      
+      //посчитаем число дней в текущем году
+      for(int i = 0; i < month-1; i++)
+        totalDays += Months[i];
+
+      totalDays += day-1;
+      
+      //обработка 29 февраля високосного года
+      if(month == 2 && day == 29) totalDays--;
+        
+      return res[totalDays%7];
+    }
+    };
