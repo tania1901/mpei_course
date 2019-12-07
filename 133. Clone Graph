@@ -1,0 +1,45 @@
+//https://leetcode.com/problems/clone-graph/
+
+/*
+// Definition for a Node.
+class Node {
+public:
+    int val;
+    vector<Node*> neighbors;
+
+    Node() {}
+
+    Node(int _val, vector<Node*> _neighbors) {
+        val = _val;
+        neighbors = _neighbors;
+    }
+};
+*/
+/*Used a map to store values of the nodes in the copied graph.(unorderd_map did not perform as the set is small)
+*/
+class Solution {
+public:
+    stack<Node> stk;
+    map<int, bool> vis;
+    map<int, Node*> gr;
+    Node* dfs(Node* root) {
+        Node* node = new Node();
+        node->val=root->val;
+        vector<Node*> neighbors_copied;
+        gr[node->val]=node;
+        vis[root->val]=1;
+        for(int i=0;i<root->neighbors.size();i++) {
+            if(!vis[root->neighbors[i]->val])
+                node->neighbors.push_back(dfs(root->neighbors[i]));
+            else node->neighbors.push_back(gr[root->neighbors[i]->val]);
+        }
+        return node;
+        
+    }
+    
+    Node* cloneGraph(Node* node) {
+        Node* copied=new Node();
+        copied = dfs(node);
+        return copied;
+    }
+};
