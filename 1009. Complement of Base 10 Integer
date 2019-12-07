@@ -1,0 +1,23 @@
+//https://leetcode.com/problems/complement-of-base-10-integer/
+
+class Solution {
+public:
+    int bitwiseComplement(int N) {
+        if (!N) {
+        return 1;//а вдруг ноль?
+    }
+    
+    int result = 0;
+    int weight = 1;//число значащих цифр
+    while (N > 0) {
+        int i = (N % 2 ? 0 : 1);//все просто: делится на два- цифра 1, а иначе 0
+        result += i * weight;
+        weight *= 2;
+       
+      
+        N = (N >> 1);
+     
+    }
+    return result;
+    }
+};
