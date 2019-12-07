@@ -1,0 +1,34 @@
+//https://leetcode.com/problems/implement-strstr/
+
+class Solution {
+public:
+    int strStr(string haystack, string needle) {
+        
+        bool fl=false;
+        int helper=0;
+       int n=needle.size();
+        int k=haystack.size();
+        if (n==0) return 0;
+        else{
+        int i=0;
+           
+        while((i<=k-n)&&!fl){
+            if (haystack[i]==needle[0]){ fl=check_for_word(haystack, needle, i);}
+            i++;
+            }
+        if (fl)return i-1;
+        else return -1;
+        }}
+    
+    bool check_for_word( string str, string word, int i){
+        bool fl=true;
+        for (auto w:word){
+           if (w!=str[i]) fl=false;
+            i++;
+        }
+        return fl;
+    }
+    
+    
+    
+};
