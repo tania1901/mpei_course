@@ -1,0 +1,34 @@
+//https://leetcode.com/problems/reverse-integer/
+
+class Solution {
+public:
+    int reverse(int x) {
+        const int MAXI=2147483647;
+        const int MINI=-2147483648;
+       int k=0;//k -вспомогательное число
+        int i=10;//степень
+        int j=-1;//степень для записи
+        bool fl=false;
+        vector <int> helper;//
+        if(x==0||x>=MAXI||x<=MINI) return 0;//
+        else{
+            if (x<0) { fl=true;  x=abs(x);}  //    
+            while(x!=0){
+                helper.push_back(x%i);//
+                x=x/ i;
+                j++;
+            }
+            for(auto s:helper){
+                 if(k>=MAXI||k<=MINI) {return 0;}//
+                
+                k=k+s*pow(10,j);   
+                j--;
+            }
+           
+            if (fl) k=k*(-1);///
+                    
+            if(k>=MAXI||k<=MINI) {return 0;}///
+            else {return k;
+     
+}}
+}}; 
