@@ -1,0 +1,16 @@
+//https://leetcode.com/problems/maximum-subarray/
+
+class Solution {
+public:
+    int maxSubArray(vector<int>& nums) {
+        int max=INT_MIN,sum=0,i,size=nums.size();//приравниваем к самому наименьшему. гарантированно.
+    for(i=0;i<size;i++){//простым перебором ищем подмассив с максимальной суммой
+        sum+=nums[i];
+        if(max<sum)
+            max=sum;//переопределяем
+        if(sum<0)// я хз, почему отрицательного массива сумма не может быть <0, но система ожидает
+            sum=0;
+    }
+    return max;
+    }
+};
