@@ -1,0 +1,21 @@
+//https://leetcode.com/problems/valid-parentheses/
+
+class Solution {
+public:
+   
+    bool isValid(string s) {
+    vector<char> dict;
+    for (const auto& c: s) {
+        if (c == '(' || c == '{' || c == '[') {
+            dict.push_back(c);
+        } else {
+            if (dict.empty()) return false;
+            if (c == ')' && dict.back() != '(') return false;
+            if (c == '}' && dict.back() != '{') return false;
+            if (c == ']' && dict.back() != '[') return false;
+            dict.pop_back();
+        }
+    }
+    return dict.empty();
+}
+};
