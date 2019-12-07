@@ -1,0 +1,14 @@
+//https://leetcode.com/problems/remove-element/
+
+class Solution {
+public:
+    int removeElement(vector<int>& nums, int val) {
+        for (auto i = begin(nums) ; i < nums.end() ; i++){//удаляем элемент из вектора по адресу
+	        if (*i == val){
+		        nums.erase(i);
+		        i=i-1;
+	        }
+        }
+        return nums.size();
+    }
+};
