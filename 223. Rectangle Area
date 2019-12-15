@@ -1,0 +1,21 @@
+//https://leetcode.com/problems/rectangle-area/
+
+class Solution {
+public:
+    
+      int computeArea(int A, int B, int C, int D, int E, int F, int G, int H) {
+        
+       long int area1,  area2, total, minR, maxL, minUp, maxBot;
+        area1=(C-A)*(D-B);//площадь первого 
+        area2=(G-E)*(H-F);//площадь второго 
+        total=area1+area2;//сумма площадей первого и второго
+        maxL=max(A, E);   //область наложения
+        minR=min(C, G);  //определяем область наложения
+        maxBot=max(B, F); //удобно на рисунке показать
+        minUp=min(D, H);    //
+        if(maxL>=minR || maxBot>=minUp)//если нет, то  сумма площадей
+            return total;
+        return total-(minR-maxL)*(minUp-maxBot);//иначе вычесть
+    }  
+    
+};
