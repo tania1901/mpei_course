@@ -1,0 +1,25 @@
+//https://leetcode.com/problems/top-k-frequent-elements/
+
+class Solution {
+public:
+    vector<int> topKFrequent(vector<int>& nums, int k) {
+           vector<int> result;
+        int n=nums.size();
+        map<int, int> freq;//храним частоту
+        vector<vector<int>> bucket(n+1);
+        for (auto n:nums)
+           freq[n]++;//заполняем частоту
+        for (auto p:freq){
+            int f=p.second;//гуляя по значениям частоты
+            bucket[f].push_back(p.first);//помещаем число
+        }
+        //получая вектор состоящий из [частота] числа ищем наименьшее
+        for (int i=n; i>=0; i--)//цикл нужен, если число k больше 1
+            for (auto b:bucket[i]){//цикл нужен если здесь одно число, а к больше 1
+                result.push_back(b);//поместим чиселку в результат
+                if (result.size()==k)//если размер равен исходному
+                    return result;
+            }
+        return result;
+    }
+};
