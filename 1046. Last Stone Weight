@@ -1,0 +1,23 @@
+//https://leetcode.com/problems/last-stone-weight/
+
+class Solution {
+public:
+    int lastStoneWeight(vector<int>& stones) {
+     sort(stones.begin(),stones.end());//отсортируем по весу
+		while(stones.size()>=2){//если камень всего один
+			if(stones[stones.size()-2]==stones[stones.size()-1]){
+				stones.pop_back();//при одинаковом весе мы удаляем оба камня
+				stones.pop_back();
+
+			}else{
+				int helper=stones[stones.size()-1]-stones[stones.size()-2];//новый вес
+				stones.pop_back();//легкий камень ушел, тяжелый камень формально по весу ушел,остался новый
+				stones.pop_back();
+				stones.push_back(helper);
+				sort(stones.begin(),stones.end());//продолжим сортировку
+			}
+		}
+		if (stones.empty()) return 0;
+		else return stones[0];   
+    }
+};
