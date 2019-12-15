@@ -1,0 +1,34 @@
+//https://leetcode.com/problems/ugly-number-ii/
+
+class Solution {
+public:
+    int nthUglyNumber(int n) {
+          vector<int>helper(n,0);//вспомогательный вектор заполняем нулями
+        helper[0]=1;
+        int num2=0,num3=0,num5=0;
+        int const2=2,const3=3,const5=5;
+        for(int i=1;i<n;i++)//пока не достигнем числа
+        {
+            int helper2=min(const2,min(const3, const5));//тупо перебираем все числа. одно из них всегда увеличивется
+            helper[i]=helper2;//у нас все ходы записаны
+            if(helper2==const2)
+            {
+                num2+=1;//по факту простейшая индексация
+                const2=helper[num2]*2;//храним элемент из массива умноженный на множитель
+            }
+            if(helper2==const3)
+                    {
+                        num3+=1;
+                        const3=helper[num3]*3;
+                    }
+            if(helper2==const5)
+                    {
+                        num5+=1;
+                        const5=helper[num5]*5;
+                    }
+                
+        }
+        return helper[n-1];
+    }
+    
+};
