@@ -1,0 +1,24 @@
+//https://leetcode.com/problems/best-time-to-buy-and-sell-stock-ii/
+
+class Solution {
+public:
+    
+     int maxProfit(vector<int>& prices) {
+   
+    int max_profit = 0;
+    int n = prices.size();
+    for(int i=1; i<n; i++)//в нулевой день продажи не случится
+    {
+        if(prices[i]>prices[i-1]) 
+        {
+            int webuy = prices[i-1];
+            while(i<n && prices[i]>prices[i-1])//условия выгодности продажи (возрастание цены)
+                i++;
+            i--;
+            
+            max_profit += prices[i]-webuy;//выгода от продажи
+        }
+    }
+    return(max_profit);
+    }   
+    };
