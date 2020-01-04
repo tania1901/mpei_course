@@ -1,0 +1,25 @@
+//https://leetcode.com/problems/reverse-vowels-of-a-string/
+
+
+class Solution {
+public:
+    string reverseVowels(string s) {
+        //меняем гласные. помещаем их в вектор
+        set<char> vowels={'e', 'u', 'i', 'o', 'a', 'E', 'U', 'I', 'O', 'A'};
+       
+        int i=0, j=s.size()-1;
+        for( i=0;i<=j;){
+            if(vowels.find(s[i])!=vowels.end()&&vowels.find(s[j])!=vowels.end()) {
+                swap(s[i],s[j]);
+                i++;
+                j--;
+            }else{
+                if(vowels.find(s[i])==vowels.end()){i++;}
+                else if(vowels.find(s[j])==vowels.end()) {j--;}
+            }
+        }
+        return s;
+    }
+};
+
+ 
