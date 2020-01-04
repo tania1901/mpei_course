@@ -1,0 +1,49 @@
+//https://leetcode.com/problems/unique-email-addresses/
+
+
+class Solution {
+public:
+    int numUniqueEmails(vector<string>& emails) {
+        set<string> email={};
+        for(auto i:emails){
+            string adress=getname(i);
+            email.insert(adress);
+        }
+        return email.size();
+    }
+    
+    string getname(string name){
+        string local=local_find(name);
+        int i=find(name);
+        string domen=domen_find(name, i);
+        string res=local+'@'+domen;
+        return res;
+    }
+    
+    int find(string name){
+        int i=0;
+        while(name[i]!='@'){
+            i++;
+        }
+        return i+1;
+    }
+    
+    string local_find(string name){
+        string res="";
+        int i=0;
+        while(name[i]!='@'){
+            if (name[i]=='+') break;
+            if(name[i]=='.') i++;
+            else {res+=name[i]; i++;}
+       }
+        return res;
+    }
+    
+    string domen_find(string name, int& i){
+        string res="";
+        for(; i<name.size(); i++){
+            res+=name[i];
+        }
+        return res;
+    }
+};
