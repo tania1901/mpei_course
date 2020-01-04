@@ -1,0 +1,52 @@
+//https://leetcode.com/problems/available-captures-for-rook/
+
+
+class Solution {
+public:
+    int numRookCaptures(vector<vector<char>>& board) {
+        //точка-белые клетки  R- белые ладья  B- белый слон
+        //запятая - черные клетки  p-черные пешки
+        //i высота j длина
+        int i=-1, j=0;
+        find(board, i, j);
+        int res=0;
+        res+=find_gor(board, i, j);
+        res+=find_vert(board,i, j);
+        return res;
+    }
+    
+    void find(vector<vector<char>>& board, int& i, int& j){
+        bool fl=true;
+        while(i<8&&fl){
+            j=0;
+            i++;
+            while(j<8&&fl){
+               
+               if(board[i][j]=='R') fl=false;
+               else{j++;}
+            }
+           
+        }
+    }
+
+
+     int find_vert(vector<vector<char>>& board, int i, int j){
+         
+          int count=0;
+         int k=i-1;
+         
+        while(k>=0){
+          if(board[k][j]=='B'){k=-1;}//блокировка
+            else if(board[k][j]=='p'){count++; k=-1;}
+          k--;
+        }  
+        k=i+1;
+        while(k<8){
+           if(board[k][j]=='B'){k=8;}//блокировка справа
+             else if(board[k][j]=='p'){count++; k=8;}
+           k++;
+        }
+         return count;
+    }
+    
+
