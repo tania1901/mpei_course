@@ -1,0 +1,17 @@
+//https://leetcode.com/problems/contains-duplicate-ii/
+
+
+class Solution {
+public:
+    bool containsNearbyDuplicate(vector<int>& nums, int k) {
+        map<int,int> helper;
+        //в отличие от двух циклов использования мэпа заменяет один из них. после цикла у нас будет полный мэ всех элементов
+        for(int i = 0; i < nums.size(); i++) {
+            if(helper.find(nums[i]) != helper.end()){
+                if(abs(i - helper[nums[i]]) <= k) return true;}
+            helper[nums[i]] = i;//храним в мэпе от-элемента-индекс
+        }
+        return false;
+ 
+    }
+};
