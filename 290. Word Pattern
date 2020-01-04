@@ -1,0 +1,44 @@
+//https://leetcode.com/problems/word-pattern/
+
+
+class Solution {
+public:
+    bool wordPattern(string pattern, string str) {
+    int i = 0;//i - число записанных символов
+    int  sizep = pattern.size(), sizes = str.size();
+        map<char, string> map1;//словари "в обе стороны"
+        map<string, char> map2;
+        bool fl=true;
+        int j=0;
+        while(fl&& j < sizep){//пока не конец шаблона заполняем словарики
+            if (i >sizes) fl= false;//на случай,если в строке остались слова
+            string word = "";
+            word=getword(str, i);
+            //этот блок стоит ЗДЕСЬ, потому что происходит проверка на ПЕРЕЗАПИСЬ!
+            if (map1.find(pattern[j]) != map1.end() && map1[pattern[j]] != word)//если элемент не найден, то передача конца мэпа
+                    fl=false;                        
+            if (map2.find(word) != map2.end() && map2[word] != pattern[j])
+                   fl=false;
+            
+            map1[pattern[j]] = word;
+            map2[word] = pattern[j];
+            
+            i++;
+            j++;
+        }
+       
+        if (i <= sizes)//букв в строке меньше,чем нужно
+            fl=false;
+       return fl;
+    }
+    
+    string getword(string from, int& i){
+        string helper="";
+         while(from[i] != ' ' && from[i] != '\0')//отделяем слово
+                helper += from[i++];
+        return helper;
+    }
+};
+
+
+            
