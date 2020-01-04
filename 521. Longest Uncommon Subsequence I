@@ -1,0 +1,12 @@
+//https://leetcode.com/problems/longest-uncommon-subsequence-i/
+
+
+class Solution {
+public:
+    int findLUSlength(string a, string b) {
+        //одна из немногих доступных функций для строк - содержание
+        if(b.compare(a)==0)//compare Сравнивает и возвращает число, которое показывает их относительное положение в порядке сортировки.
+            return -1;
+        return max(a.length(),b.length());
+    }
+};
