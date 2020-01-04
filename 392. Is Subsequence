@@ -1,0 +1,17 @@
+//https://leetcode.com/problems/is-subsequence/
+
+
+class Solution {
+public:
+    bool isSubsequence(string s, string t) {
+       if (s.size()==0) return true;//нулевая подстрока это всегда мило
+        int j = 0;//перебираем последовательно все буковки подстроки
+        for (int i=0; i<t.size(); i++) {
+            if (t[i] == s[j]) {
+                j++;
+                if (j == s.size()) return true;//мы дотопали до конца подстроки. она содержится. ура!!
+            }
+        }
+        return false;//ну раз ретурны нас не выбросили раньше...
+    }
+};
