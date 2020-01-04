@@ -1,0 +1,19 @@
+//https://leetcode.com/problems/sort-array-by-parity-ii/
+
+
+class Solution {
+public:
+    vector<int> sortArrayByParityII(vector<int>& A) {
+        vector <int> even;
+        vector <int> odd;
+        for(auto i:A)
+            if (i%2==0) even.push_back(i);
+                else odd.push_back(i);
+        
+        for(int i=0; i<A.size(); i++)
+            if(i%2==0) {A[i]=even[0]; even.erase(even.begin());}
+                else{A[i]=odd[0]; odd.erase(odd.begin());}
+        return A;
+            
+    }
+};
