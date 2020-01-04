@@ -1,0 +1,17 @@
+//https://leetcode.com/problems/number-of-equivalent-domino-pairs/
+
+
+class Solution {
+public:
+    int numEquivDominoPairs(vector<vector<int>>& dominoes) {
+        map<pair<int,int>,int> freq;//держим частоту
+        int res = 0;
+        for(auto i:dominoes){
+            if(i[0]>i[1]) swap(i[0],i[1]);//попытка упорядочить
+            res+= freq[{i[0],i[1]}];
+            freq[{i[0],i[1]}]++;//увеличиваем на единичку частоту встречи этой доминошки
+            
+        }
+        return res;
+    }
+};
