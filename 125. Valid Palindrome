@@ -1,0 +1,26 @@
+https://leetcode.com/problems/valid-palindrome/
+
+
+class Solution {
+public:
+    bool isPalindrome(string s) {
+        string helper;
+        
+        for (auto i:s)
+            //cout<<i;
+        if (isdigit(i)||isalpha(i)) helper+=toupper(i);//переключение в верхний регистр
+        bool fl= doing(helper);
+        return fl;
+    }
+    
+ bool doing (string s){
+     int n=s.size();
+     bool fl=true;
+     int i=0;
+     while (fl&& i<n/2){//проверяем только половину слова
+         if (s[i]!=s[n-1-i]) fl=false;
+         i++;
+     }
+     return fl;
+ }
+};
