@@ -1,0 +1,19 @@
+//https://leetcode.com/problems/k-diff-pairs-in-an-array/
+
+
+class Solution {
+public:
+    int findPairs(vector<int>& nums, int k) {
+      if (k < 0) return 0;//абсолютная разница!
+      if (nums.size()==0) return 0;
+      map<int,int> helper;
+        sort(nums.begin(), nums.end());//в отсортированном порядке последовательно сравниваем каждое число со всеми справа от него
+        int res = 0;
+        for (int i=0;i<nums.size()-1; i++) {
+            for (int j=i+1;j<nums.size(); j++ ){
+                if (abs(nums[j]-nums[i])==k) helper[nums[i]]=nums[j];//если найдены нужные пары,то мэпим их
+            }
+        }
+        return helper.size();//возвращаем длину мэпа уникальных пар
+    }
+};
