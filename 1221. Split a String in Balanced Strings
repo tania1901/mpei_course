@@ -1,0 +1,17 @@
+//https://leetcode.com/problems/split-a-string-in-balanced-strings/
+
+
+class Solution {
+public:
+    int balancedStringSplit(string s, int ans=0) {
+       int Count = 0;//число R и L одинаково. увеличиваем счетчик буквы, при встрече другой буквы - уменьшаем
+        int res = 0;
+        for (auto i: s){
+            if (i == 'R')  Count++;
+            else  Count--;
+
+            if (Count == 0) res++;//обрезаем строку,когда буквы сбалансированны
+        }
+        return res;
+    }
+};
