@@ -1,0 +1,17 @@
+//https://leetcode.com/problems/check-if-it-is-a-straight-line/
+
+
+class Solution {
+public:
+    bool checkStraightLine(vector<vector<int>>& coordinates) {
+        int  tgy = coordinates[0][1] - coordinates[1][1];
+        int  tgx = coordinates[0][0] - coordinates[1][0];//считаем через тангенс. если угол тот же (пропорции те)
+        for(int i = 2; i<coordinates.size(); i++){
+            int currenttgy = coordinates[i][1] - coordinates[i-1][1];
+            int currenttgx = coordinates[i][0] - coordinates[i-1][0];
+            if(tgx*currenttgy != currenttgx*tgy)
+                return false;
+        }
+        return true;
+    }
+};
