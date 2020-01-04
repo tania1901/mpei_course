@@ -1,0 +1,12 @@
+//https://leetcode.com/problems/contains-duplicate/
+
+
+class Solution {
+public:
+    bool containsDuplicate(vector<int>& nums) {
+       //тк через два милых цикла не зашло (time limit 17 test)
+        set<int> helper(nums.begin(), nums.end());
+        if (helper.size()!=nums.size()) return true;
+        else return false;
+    }
+};
