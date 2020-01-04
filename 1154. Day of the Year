@@ -1,0 +1,42 @@
+//https://leetcode.com/problems/day-of-the-year/
+
+
+class Solution {
+public:
+    int dayOfYear(string date) {
+     vector <int> vyear ={31, 29, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31} ;
+     vector<int> nyear ={31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31} ;
+     int year=0, month=0, day=0;
+        what(date, year, month, day);
+        int sum=day;
+        if(year%400==0||(year%4==0&&year%100!=0)) {
+            //високосный
+            for(int i=0; i<month-1; i++)
+               sum+= vyear[i];
+            }else{
+            for(int i=0; i<month-1; i++)
+               sum+= nyear[i];
+        }
+        return sum;
+    }
+    
+    void what(string date, int& year, int& month, int& day){
+        int st=0;
+       for(int i=3; i>=0; i--){
+           int ch=date[i]-'0';
+           year+=ch*pow(10, st);
+        st++;}
+        
+        st=0;
+        for(int i=6; i>4; i--){
+            int ch=date[i]-'0';
+           month+=ch*pow(10, st);
+        st++;}
+        st=0;
+        for(int i=9; i>7; i--){
+            int ch=date[i]-'0';
+           day+=ch*pow(10, st);
+        st++;}
+    }
+};
+
