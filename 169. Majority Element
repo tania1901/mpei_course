@@ -1,0 +1,17 @@
+//https://leetcode.com/problems/majority-element/
+
+class Solution {
+public:
+    int majorityElement(vector<int>& nums) {
+        map<int, int> h;
+        int res;
+        for( auto i:nums){//создание словаря частоты элементов
+            h[i]+=1;
+        }
+        int n=nums.size()/2;
+        for (auto i:nums){
+          if (h[i]>n) res=i;  
+        }
+        return res;
+    }
+};
