@@ -1,0 +1,20 @@
+//https://leetcode.com/problems/third-maximum-number/
+
+
+class Solution {
+public:
+    int thirdMax(vector<int>& nums) {
+       vector <int> helper; // храним максимумы
+    
+		set<int> set_nums(nums.begin(), nums.end()); // чтобы  пройтись по всем числам без повторов
+    //а сортировка уже есть!
+		for (auto i: set_nums) 
+			helper.push_back(i);
+		
+    
+		if (helper.size() < 3)  // тогда возвращаем последний
+			return helper[helper.size() - 1];
+		else return helper[helper.size() - 3]; //повтов нет, берем третий эдемент
+	} 
+    
+};
