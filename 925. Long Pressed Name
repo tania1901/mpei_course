@@ -1,0 +1,20 @@
+//https://leetcode.com/problems/long-pressed-name/
+
+
+class Solution {
+public:
+    bool isLongPressedName(string name, string typed) {
+        int i = 0, j = 0; //счетчики
+        char ch;
+        
+        while(i < name.size() && j < typed.size()){
+            if(name[i] == typed[j])//если символы одинаковы,то 
+                {ch = name[i]; i++; j++;}
+            else{
+                if(ch != typed[j]) return false;  //несовпадение ожидаемого символа с написанным             
+                while(j < typed.size() && ch == typed[j])  j++;
+                }
+        }
+        return (i == name.size());
+    }    
+};
