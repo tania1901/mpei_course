@@ -1,0 +1,32 @@
+//https://leetcode.com/problems/replace-elements-with-greatest-element-on-right-side/
+
+
+class Solution {
+public:
+    vector<int> replaceElements(vector<int>& arr) {
+       int i=0;
+        doing(arr, i);
+        return arr;
+    }
+    
+    void doing (vector<int> &arr, int& i){
+        if (i==arr.size()-1) arr[i]=-1;
+        else{
+            int max=arr[i+1];
+        if (hasmax(arr,max, i+1)) arr[i]= max;
+            i++;
+            doing(arr, i);
+    }
+    }
+    
+   
+        
+    bool hasmax(vector<int> &arr, int& max, int i){
+        bool fl=false;
+        for(; i<arr.size(); i++){
+            if(arr[i]>=max) {max =arr[i]; fl=true;}
+        }
+    return fl;
+}
+    
+};
