@@ -1,0 +1,39 @@
+//https://leetcode.com/problems/compare-strings-by-frequency-of-the-smallest-character/
+
+
+class Solution {
+public:
+    vector<int> numSmallerByFrequency(vector<string>& queries, vector<string>& words) {
+        vector<int> helper(10,0);
+        vector<int> answer;
+        int freq, sum;
+        // Вычислим наименьшую популярную букву для всех слов, записывая частоту каждого в вектор 
+        for (int i = 0; i < words.size(); ++i){
+            freq = doing(words[i]);
+            helper[freq - 1]++;
+        }
+        // сумма наибольшего наименьшего опулярного
+        for (int i = 0; i < queries.size(); ++i){
+            freq = doing(queries[i]);
+            sum = 0;
+            for (int j = freq; j < 10; j++)
+                sum += helper[j];
+            answer.push_back(sum);
+        }
+        return answer;
+    }
+    
+    
+    int doing(string s){
+        char smallest = s[0];
+        int smallestFreq = 1;
+        for (int i = 1; i < s.size(); i++){
+            if (s[i] < smallest){
+                smallest = s[i];
+                smallestFreq = 1;
+            }else if (s[i] == smallest)
+                smallestFreq++;
+        }
+        return smallestFreq;
+    }
+};
