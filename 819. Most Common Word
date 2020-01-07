@@ -1,0 +1,34 @@
+//https://leetcode.com/problems/most-common-word/
+
+
+class Solution {
+public:
+    string mostCommonWord(string paragraph, vector<string>& banned) {
+        set<string> ban(banned.begin(), banned.end());
+       
+        map<string, int> freq;
+        
+        string ch = "";
+        int i=0;
+        while(i<paragraph.size()){
+            while(isalpha(paragraph[i])){//выделяем слово
+                ch+=tolower(paragraph[i]);
+                i++;
+            }
+            if (ch!="")
+              if(ban.count(ch)==0) freq[ch]++;//проверка на забаненность
+            ch="";
+            i++;
+        }
+        int res=0;
+        
+        for(auto w: freq)
+        {
+            if(w.second > res){
+                ch = w.first;
+                res=w.second;
+        }
+        }
+        return ch;
+    }
+};
