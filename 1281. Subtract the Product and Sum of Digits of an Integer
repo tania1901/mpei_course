@@ -1,0 +1,30 @@
+//https://leetcode.com/problems/subtract-the-product-and-sum-of-digits-of-an-integer/
+
+
+class Solution {
+public:
+    int subtractProductAndSum(int n) {
+       
+        return (product(n)-addDigits(n));
+    }
+    
+    int addDigits(int num) {
+         int res=0;
+        while(num>0){
+            res+=num%10;//на цифру
+            num/=10;
+        }
+        return res;
+    }
+    
+    int product( int num){
+        int res=1;
+        while(num>0){
+            res*=num%10;//на цифру
+            num/=10;
+        }
+        return res;
+    }
+    
+    
+};
