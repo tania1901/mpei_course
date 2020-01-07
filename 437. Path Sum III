@@ -1,0 +1,37 @@
+//https://leetcode.com/problems/path-sum-iii/
+
+
+/**
+ * Definition for a binary tree node.
+ * struct TreeNode {
+ *     int val;
+ *     TreeNode *left;
+ *     TreeNode *right;
+ *     TreeNode(int x) : val(x), left(NULL), right(NULL) {}
+ * };
+ */
+class Solution {
+public:
+    int pathSum(TreeNode* root, int sum) {
+        if(root == NULL) return 0;
+        int count = 0;//считаем число
+        childPaths(root, sum, count);
+        return count;
+    }  
+        
+      void paths(TreeNode* root, int sum, int &count){
+        if(root == NULL) return;//пустой
+        if(sum - root->val == 0){//точка остановок
+            count += 1;
+        }
+        paths(root->left, sum - root->val, count);
+        paths(root->right, sum - root->val, count);
+    }
+    void childPaths(TreeNode* root, int sum, int &count){
+        if(root == NULL) return;
+        paths(root, sum, count);//сначала поиск из этой точки
+        childPaths(root->left, sum, count);//а отом из ее детей
+        childPaths(root->right, sum, count);
+    }
+    
+};
