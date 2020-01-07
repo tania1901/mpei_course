@@ -1,0 +1,15 @@
+//https://leetcode.com/problems/add-digits/
+
+
+class Solution {
+public:
+    int addDigits(int num) {
+        //сумма цифр будет уменьшаться до состояния меньше девяти
+        //сумма цифр равной нулю быть не может
+        //если оно делится на девять (81) то на следующем шаге оно будет девяткой(рано или поздно)
+        //иначе мы выводим остаток от деления
+         if(num<=9) return num ;
+    else if(num%9==0) return 9 ;
+    else return (num%9) ;
+    }
+};
