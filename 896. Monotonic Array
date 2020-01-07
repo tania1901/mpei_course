@@ -1,0 +1,22 @@
+//https://leetcode.com/problems/monotonic-array/
+
+
+class Solution {
+public:
+    bool isMonotonic(vector<int>& A) {
+        return (monotonic_incr(A)||monotonic_decr(A));
+    }
+    
+        bool monotonic_incr(vector<int> A){
+        for(int i=0; i<A.size()-1; i++){
+         if (A[i]>A[i+1]) return false;
+        }
+        return true;
+    }
+        bool monotonic_decr(vector<int> A){
+        for(int i=0; i<A.size()-1; i++){
+         if (A[i]<A[i+1]) return false;
+        }
+        return true;
+    }
+};
