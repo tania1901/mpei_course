@@ -1,0 +1,41 @@
+//https://leetcode.com/problems/excel-sheet-column-title/
+
+
+class Solution {
+public:
+    
+
+    string convertToTitle(int n) {
+        map<int, char> letter;
+        letter[1]='A';
+        letter[2]='B';
+        letter[3]='C';
+        letter[4]='D';
+        letter[5]='E';
+        letter[6]='F';
+        letter[7]='G';
+        letter[8]='H';
+        letter[9]='I';
+        letter[10]='J';
+        letter[11]='K';
+        letter[12]='L';
+        letter[13]='M';
+        letter[14]='N';
+        letter[15]='O';
+        letter[16]='P';
+        letter[17]='Q';
+        letter[18]='R';
+        letter[19]='S';
+        letter[20]='T';
+        letter[21]='U';
+        letter[22]='V';
+        letter[23]='W';
+        letter[24]='X';
+        letter[25]='Y';
+        letter[26]='Z';
+      string res= ""; 
+      if(n<=26) res=letter[n];
+        else res+=convertToTitle((n-1)/26)+convertToTitle((n-1)%26+1);//для нумерации с 1
+        return res;
+    }
+};
