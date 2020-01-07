@@ -1,0 +1,18 @@
+//https://leetcode.com/problems/transpose-matrix/
+
+
+class Solution {
+public:
+    vector<vector<int>> transpose(vector<vector<int>>& A) {
+       vector<vector<int>> T;
+        for(int j=0;j<A[0].size();j++){
+            vector<int> str;
+            for(int i=0; i<A.size();i++){
+                cout<<A[i][j];
+                str.push_back(A[i][j]);
+            }
+            T.push_back(str);
+        }
+        return T;
+    }
+};
