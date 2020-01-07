@@ -1,0 +1,26 @@
+//https://leetcode.com/problems/find-common-characters/
+
+
+class Solution {
+public:
+    vector<string> commonChars(vector<string>& A) {
+      vector < int > count(26,INT_MAX);//вектор на каждую букву заполнен САМЫМ максимумом
+      vector < string > res;
+     //для каждого слова создаем массив повторений букв   
+      for(int i=0;i<A.size();i++){
+         vector < int > ch(26,0);
+        
+         for(int j=0;j<A[i].size();j++)//поиск по строкам
+           ch[A[i][j]-'a']++;//под номером буквы храним частоту
+          
+         //выбираем наименьшее число (предыдущий результат и слово) повторений каждой буквы и заносим в "основной" вектор   
+         for(int j=0;j<26;j++)
+            count[j]=min(ch[j],count[j]);
+       }
+     for(int i=0;i<26;i++)//для всех букв
+        for(int j=0;j<count[i];j++)//если буква есть, то мы дублируем ее 
+            res.push_back(string(1,'a'+i));
+    
+    return res;
+ }
+};
