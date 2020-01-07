@@ -1,0 +1,22 @@
+//https://leetcode.com/problems/valid-mountain-array/
+
+
+class Solution { 
+public: 
+bool validMountainArray(vector<int>& A) { 
+bool fl=false; 
+int i=0; 
+if (A.size()==0||A.size()==1) return false;
+if (A[0]>=A[1]||A[A.size()-1]>=A[A.size()-2]) return false;//края не удовлетворяют условиям 
+//обработка основного массива
+while(!fl&&i<(A.size()-1)){//поиск наибольшего элемента 
+if(A[i]>=A[i+1]&&i!=0)fl=true; 
+else i++; 
+} 
+
+for(i=i+1;i<A.size();i++){//проверка на уменьшение 
+if(A[i-1]<=A[i]) fl=false;//при неисполнении 
+} 
+return fl; 
+} 
+};
