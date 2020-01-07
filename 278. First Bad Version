@@ -1,0 +1,23 @@
+//https://leetcode.com/problems/first-bad-version/
+
+
+// Forward declaration of isBadVersion API. 
+bool isBadVersion(int version); 
+
+class Solution { 
+public: 
+int firstBadVersion(int n) { 
+    
+if (isBadVersion(1)) return 1;//Метод ньютона шоб ему пусто было)))
+int min=1,
+    max=n,
+    i;
+   while(max-min!=1){
+      i=(max-min)/2+min;//ПЕРЕЗАПОЛНЕНИЕ!
+     if (isBadVersion(i)) max=i;
+       else min=i;
+      
+ }
+    return max;
+} 
+};
