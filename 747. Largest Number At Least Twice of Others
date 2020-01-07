@@ -1,0 +1,36 @@
+//https://leetcode.com/problems/largest-number-at-least-twice-of-others/
+
+
+class Solution { 
+public: 
+int dominantIndex(vector<int>& nums) { 
+vector<int> h=nums; 
+sort(h.begin(),h.end()); 
+//поиск элемента в х с конца 
+//проверка на больше чем в два раза каждого элемента в х 
+//если да то поиск в исходном этого элемента возврат индекса 
+//иначе продолжить 
+//вернуть -1 если прошли весь массив 
+// 
+// 
+    bool fl=true;
+    for(int i=h.size()-1; i>=0; i--){
+        int j=i-1;
+        while(fl&&j>0){
+          if (h[i]/2>=h[j]) fl=true;
+            else fl=false;
+            j--;
+        }
+        if (fl) return find(nums, h[i]);
+        }
+    return -1;
+    }
+    
+    int find (vector<int> nums, int i){
+        for (int j=0; j<nums.size(); j++){
+            if (nums[j]==i) return j;
+        }
+        return -1;
+    }
+
+};
