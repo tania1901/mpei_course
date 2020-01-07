@@ -1,0 +1,53 @@
+//https://leetcode.com/problems/decrypt-string-from-alphabet-to-integer-mapping/
+
+
+class Solution {
+public:
+    string freqAlphabets(string s) {
+        
+map<string,char>letter;
+        letter["1"]='a';
+        letter["2"]='b';
+        letter["3"]='c';
+        letter["4"]='d';
+        letter["5"]='e';
+        letter["6"]='f';
+        letter["7"]='g';
+        letter["8"]='h';
+        letter["9"]='i';
+        letter["10#"]='j';
+        letter["11#"]='k';
+        letter["12#"]='l';
+        letter["13#"]='m';
+        letter["14#"]='n';
+        letter["15#"]='o';
+        letter["16#"]='p';
+        letter["17#"]='q';
+        letter["18#"]='r';
+        letter["19#"]='s';
+        letter["20#"]='t';
+        letter["21#"]='u';
+        letter["22#"]='v';
+        letter["23#"]='w';
+        letter["24#"]='x';
+        letter["25#"]='y';
+        letter["26#"]='z';
+
+        
+        string res="";
+        int i=s.length()-1;//задом наперед выбираем числа,чтобы удобнее искать решетки
+        while(i>=0){
+            if(s[i] == '#'){
+                
+                res+=letter[s.substr(i-2,2)+"#"];//тк число двузначно
+                i-=3;//тк еще есть решетка
+            }else{
+                
+                res+=letter[s.substr(i, 1)];
+                i--;//лишь один знак
+                }
+        }
+        reverse(res.begin(), res.end());
+        return res;
+    }
+};
