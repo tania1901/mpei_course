@@ -1,0 +1,18 @@
+//https://leetcode.com/problems/n-repeated-element-in-size-2n-array/
+
+
+class Solution {
+public:
+    int repeatedNTimes(vector<int>& A) {
+       int k=1;
+        sort(A.begin(), A.end());
+        int i=1;
+        bool fl=false;
+        while(!fl&&i<A.size()){
+            if (A[i-1]==A[i]) {k++;i++;}//накопление одинаковых элементов
+            else {k=1;i++;}
+            if (k==A.size()/2) {fl=true;}
+        }
+        return A[i-1];
+    }
+};
