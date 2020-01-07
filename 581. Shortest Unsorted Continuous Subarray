@@ -1,0 +1,18 @@
+//https://leetcode.com/problems/shortest-unsorted-continuous-subarray/
+
+
+class Solution { 
+public: 
+int findUnsortedSubarray(vector<int>& nums) { 
+vector <int> helper=nums; 
+sort(helper.begin(), helper.end());//сортируем копию 
+int i=0, j=nums.size()-1;//пока элементы с двух сторон сразу равны отсортированному - продолжаем поиск 
+while(i<j&&(nums[i]==helper[i]||nums[j]==helper[j])){ 
+if(nums[i]==helper[i])i++;//спереди все правильно 
+else if (nums[j]==helper[j]) j--;//сзади все правильно 
+} 
+if (i==j) return 0;//равность элементов-поиск завершен без результатов 
+return j-i+1;//возвращение фактической длины 
+} 
+
+};
