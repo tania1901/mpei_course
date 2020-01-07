@@ -1,0 +1,16 @@
+//https://leetcode.com/problems/to-lower-case/
+
+
+class Solution {
+public:
+    string toLowerCase(string str) {
+        //предположительно нельзя использовать tolower
+        
+        string res="";
+        for(auto i:str){
+            if (i>='A'&&i<='Z') res+=32+i;//между ними 32 символа
+            else res+=i;
+        }
+        return res;
+    }
+};
