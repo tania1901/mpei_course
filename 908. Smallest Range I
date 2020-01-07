@@ -1,0 +1,21 @@
+//https://leetcode.com/problems/smallest-range-i/
+
+
+class Solution {
+public:
+    int smallestRangeI(vector<int>& A, int K) {
+        //необязательно делать все это
+        //достаточно найти минимальный элемент исходного и прибавить К
+        //найти максимальный элемент исходного и вычесть К
+        //
+       int ma=A[0];
+       int mi=A[0];
+        for(auto i:A){
+            if (i>ma) ma=i;
+            else if(mi>i)mi=i;
+            
+        }
+       if(ma-K<= mi+K)return 0;//в случае не-работы основного алгоритма мы просто можем занулить их!
+       return (ma-K)-(mi+K);
+    }
+};
