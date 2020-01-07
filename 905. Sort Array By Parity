@@ -1,0 +1,17 @@
+//https://leetcode.com/problems/sort-array-by-parity/
+
+
+class Solution {
+public:
+    vector<int> sortArrayByParity(vector<int>& A) {
+        int j=0;
+        int i=A.size()-1;//два счетчика с двух концов
+        while(i>j){
+           if(A[i]%2==0)//четный элемент -
+                if(A[j]%2==0) {j+=1;}//житый тоже четный, поиск спереди нечетного
+                    else {swap(A[i], A[j]); j++; i--;}//найден-меняем и идем дальше
+            else i--;//нечетный -поиск дальше
+        }
+        return A;
+    }
+};
