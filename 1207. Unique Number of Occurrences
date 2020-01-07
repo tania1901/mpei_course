@@ -1,0 +1,16 @@
+//https://leetcode.com/problems/unique-number-of-occurrences/
+
+
+class Solution {
+public:
+    bool uniqueOccurrences(vector<int>& arr) {
+        map<int,int> freq;
+        set<int> res;
+        for(auto i:arr)
+            freq[i]++;//запишем все частоты каждого числа
+        for(int i:arr)
+            res.insert(freq[i]);//поместим результаты во множество
+        
+        return (res.size()==freq.size());//несовпадение размеров-не все уникальны
+    }
+};
