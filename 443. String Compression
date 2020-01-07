@@ -1,0 +1,25 @@
+//https://leetcode.com/problems/string-compression/
+
+
+class Solution { 
+public: 
+int compress(vector<char>& chars) { 
+int i = 0;//будем проводить поиск одинаковых букв двумя счетчиками 
+while(i < chars.size()) { 
+    int j = i; 
+    while(j < chars.size() && chars[j] == chars[i]) j++; 
+    if(j == i+1) i++; //если j есть следующий элемент 
+        else { 
+            chars.erase(chars.begin()+i+1, chars.begin()+j); 
+            int step = 0, ctr = j - i;//число повторов 
+            while(ctr != 0) { 
+                chars.insert(chars.begin()+i+1, '0' + ctr%10);//на позицию и+1 пишем цифру 
+                ctr /= 10;//отделяем следующую 
+                step++;//новое число элементов после и 
+            } 
+            i += step + 1;//cдвиг на число записей 
+        } 
+    } 
+return chars.size(); 
+} 
+};
