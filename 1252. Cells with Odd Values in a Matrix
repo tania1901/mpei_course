@@ -1,0 +1,37 @@
+//https://leetcode.com/problems/cells-with-odd-values-in-a-matrix/
+
+
+class Solution {
+public:
+    int oddCells(int n, int m, vector<vector<int>>& indices) {
+        //устроим нулевую матрицу
+        vector<vector<int>>matr;
+        vector<int> t(m,0);
+        for(int i=0; i<n; i++)
+            matr.push_back(t);
+        for (auto k:indices){
+            int i=k[0];
+            int j=k[1];
+            doing(matr, i, j, n, m);
+        }
+         return find(matr, n, m);
+    }
+    
+    void doing(vector<vector<int>>& matr, int i, int j, int n, int m){
+          for(int k=0; k<m; k++){
+               matr[i][k]++; 
+            }
+          for(int k=0; k<n; k++){
+              matr[k][j]++;
+          }    
+    }
+    
+    int find(vector<vector<int>> matr, int n, int m){
+        int res=0;
+        for(int i=0; i<n; i++)
+            for(int j=0; j<m; j++)
+                if (matr[i][j]%2==1) res++;
+        
+        return res;
+    }
+};
