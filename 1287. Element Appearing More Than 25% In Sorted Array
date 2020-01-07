@@ -1,0 +1,22 @@
+//https://leetcode.com/problems/element-appearing-more-than-25-in-sorted-array/
+
+
+class Solution {
+public:
+    int findSpecialInteger(vector<int>& arr) {
+       vector <int> res={arr[0],0};
+       vector<int> helper={arr[0],0};
+        for(auto i:arr){//пробегая весь массив
+            if (i==helper[0]) helper[1]++;//в хелпере храним пробегаемое число и его кол-во
+               else {
+                   if(helper[0]!=i) helper={i,1};//переключаем на новое число
+                   else {helper[0]=i; helper[1]++;}//вновь проверка
+                   
+               }
+        if(res[1]<helper[1]) res=helper;//если частота больше,чем накопленный результат
+        }
+        return res[0];
+            
+        
+    }
+};
