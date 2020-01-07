@@ -1,0 +1,27 @@
+//https://leetcode.com/problems/reverse-words-in-a-string-iii/
+
+
+class Solution { 
+public: 
+string reverseWords(string s) { 
+string res=""; 
+int i=0; 
+int j=0; 
+while(j<s.size())
+    if(s[j]==' ') {res+=reverse(s,i,j-1)+s[j]; // последний не-пробел слова 
+                                 i=j+1;//прыгаем до пробела 
+                                 j++;
+    }else{
+         j++;
+         if(j==s.size()) {res+=reverse(s,i,j-1);}//разворачиваем последнее слово 
+         } 
+return res; 
+} 
+
+string reverse(string s, int i, int j){ 
+string res=""; 
+while(i<=j) 
+{res+=s[j]; j--;}//пишем последний символ 
+return res; 
+} 
+};
