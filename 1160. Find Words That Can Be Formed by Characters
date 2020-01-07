@@ -1,0 +1,26 @@
+//https://leetcode.com/problems/find-words-that-can-be-formed-by-characters/
+
+
+class Solution {
+public:
+    int countCharacters(vector<string>& words, string chars) {
+       int res=0;
+      map<char, int> h;
+       for(auto i:chars){
+           h[i]++;//создадим словарь числа букв
+       }
+       for(auto i: words){
+           if(doing(i,h)) res+=i.size();//если да, то плюсуем размер
+       }
+         return res;
+    }
+    
+    bool doing( string word, map<char, int> h){
+        bool fl=true;
+        for(auto i:word){
+            if(h[i]>0) h[i]--;//как только букв не осталось - выход
+            else fl=false;
+        }
+        return fl;
+    }
+};
