@@ -1,0 +1,27 @@
+//https://leetcode.com/problems/self-dividing-numbers/
+
+
+class Solution {
+public:
+    vector<int> selfDividingNumbers(int left, int right) {
+        vector<int> res;
+        for(int i=left; i<=right; i++){
+           if (selfdiv(i)) res.push_back(i);
+        }
+        return res;
+    }
+    
+    bool selfdiv(int i){
+        bool fl=true;
+        int k=i;// для работы посимвольно копия числа
+        
+        while(fl&&k>0){
+            if(k%10==0) fl=false;//содержит ноль как следствие
+            else{
+            if(i%(k%10)!=0) fl=false;//не делится
+            k/=10;//отделяем еще одну цифру
+            }
+        }
+        return fl;
+    }
+};
