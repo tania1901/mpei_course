@@ -1,0 +1,15 @@
+//https://leetcode.com/problems/number-of-segments-in-a-string/
+
+
+class Solution { 
+public: 
+int countSegments(string s) { 
+int res=0; 
+int word=0; 
+for(int i=0; i<s.size(); i++) 
+if(s[i]!=' ') word++;//считаем длину 
+else if(word!=0) {res++; word=0;}//если записано слово,то плюсуем к числу слов 
+if(word!=0) {res++; word=0;}//если записано  последнее слово,то плюсуем к числу слов 
+return res; 
+} 
+};
