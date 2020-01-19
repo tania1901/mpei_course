@@ -1,0 +1,26 @@
+//https://leetcode.com/problems/valid-palindrome-ii/
+
+
+class Solution {
+public:
+   bool validPalindrome(string s) {
+        int j= s.size()-1;
+        int i= 0;
+
+        while (i < j) {
+            if (s[i] == s[j]) {//пока буквы одинаковы мы идем дальше иначе сравниваем без них
+                i++;
+                j--;
+            }else return isPalindrome(s,i+1,j) || isPalindrome(s,i,j-1);
+        }
+        return true;
+   } 
+        
+        bool isPalindrome (string s, int i, int j) {
+            int k=i, q=j;
+        while(k < q)
+            if (s[k++] != s[q--]) return false;
+
+        return true;
+    }
+};
