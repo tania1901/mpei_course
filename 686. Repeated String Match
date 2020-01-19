@@ -1,0 +1,31 @@
+//https://leetcode.com/problems/repeated-string-match/
+
+class Solution {
+public:
+    int repeatedStringMatch(string A, string B) {
+        //метод: в строке А должны содержаться все буквы, встречающиеся в В
+        //кратность может не соблюдаться
+        //пробегая и наращивая "много А" проверяем содержание подстроки
+        vector<int> lettersA(26, 0), lettersB(26, 0);
+        
+        for(char& i : A)
+            lettersA[i - 'a']++;//повторение каждой буквы в строке
+        for(char& i : B) 
+            lettersB[i - 'a']++;
+        
+        for(int i = 0; i < 26; i++)//если буква в строке В есть,но ее нет в строке А
+            if(lettersB[i]>0&&lettersA[i]==0)return -1;
+        
+        //
+        //
+        string str = "";
+        int m = A.size(), n = B.size();
+        for(int i = 1; i <= (n+2*m)/m; i++){
+            str += A;
+            
+            int found = str.find(B);
+            if (found != -1)   return i;//возврат ответа
+        }
+        return -1;
+    }
+};
