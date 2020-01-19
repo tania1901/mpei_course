@@ -1,0 +1,18 @@
+//https://leetcode.com/problems/robot-return-to-origin/
+
+class Solution {
+public:
+    bool judgeCircle(string moves) {
+        map<char,int> mov;
+        mov['L']=0;
+        mov['R']=0;
+        mov['U']=0;
+        mov['D']=0;
+        for(auto i:moves){
+            mov[i]++;
+        }
+        
+        if(mov['R']==mov['L']&&mov['U']==mov['D'])return true;
+        return false;
+    }
+};
