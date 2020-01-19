@@ -1,0 +1,29 @@
+//https://leetcode.com/problems/linked-list-cycle/
+
+
+/**
+ * Definition for singly-linked list.
+ * struct ListNode {
+ *     int val;
+ *     ListNode *next;
+ *     ListNode(int x) : val(x), next(NULL) {}
+ * };
+ */
+class Solution {
+public:
+    bool hasCycle(ListNode *head) {
+       bool fl=false;
+       ListNode* t = head;//для поиска элемента
+        while(t&&!fl){//пока т существует двигаемся  дальше
+            cout << "h->" << head->val << endl;
+            cout << "t->" << t->val << endl;
+            head = head->next;//
+            t = t->next;
+            if(!t) fl=false;//сравнивать не с чем
+            else {
+                t = t->next;
+                if(t && head == t) fl=true;}//нашли элемент
+             } 
+        return fl;
+     }
+};
