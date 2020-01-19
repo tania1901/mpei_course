@@ -1,0 +1,41 @@
+//https://leetcode.com/problems/palindrome-linked-list/
+
+
+/**
+ * Definition for singly-linked list.
+ * struct ListNode {
+ *     int val;
+ *     ListNode *next;
+ *     ListNode(int x) : val(x), next(NULL) {}
+ * };
+ */
+class Solution {
+public:
+    bool isPalindrome(ListNode* head) {
+        bool flag=false;
+        int n = INT_MAX;    // колличество элементов для просмотра
+        ListNode *k, *h;    // указатели левого и правого симетричных элементов
+        
+        if ( head == nullptr || head->next == nullptr) return true;
+        
+        h = head;
+        do {
+            k = h;                            // поиск симетричног элемента
+            for ( int i = 1; i < n; i++ ) {  // поиск указателя симетричного элемента
+                if ( k->next == nullptr ){    // на первом проходе вычисляем длинну масива
+                    n = i;                    
+                    break;
+                }
+                k = k->next;
+            }
+            if ( h->val == k->val ) {         // проверка симметричных элементов
+               flag = true;                   // совпали: двигаем указатели и счетчики
+               n = n - 2;
+               h = h->next;
+            }
+            else return false;
+            
+        } while ( n > 1 );
+        return flag;
+    }
+};
