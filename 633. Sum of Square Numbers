@@ -1,0 +1,19 @@
+//https://leetcode.com/problems/sum-of-square-numbers/
+
+
+class Solution {
+public:
+    bool judgeSquareSum(int c) {
+        if (c<0)    return false;//тк в задании два числа в квадрате, то это не "мощные числа"
+        if (c == 0)  return true;
+		
+        int bound = sqrt(c);
+        for (int a=1; a<=bound; a++) {//равно тк два числа могут быть не различны
+            int b = sqrt(c - a*a);
+            if (b*b+a*a == c)     return true;
+        }
+        
+        return false;
+    }
+    
+};
