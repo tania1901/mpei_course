@@ -1,0 +1,28 @@
+//https://leetcode.com/problems/next-greater-element-i/
+
+
+class Solution {
+public:
+    vector<int> nextGreaterElement(vector<int>& nums1, vector<int>& nums2) {
+        vector<int> res;
+        
+        for(auto i:nums1){
+            res.push_back(find(nums2, i));
+        }
+        return res;
+    }
+    
+    int find(vector<int> s, int a){
+        int i=0;
+        while(i<s.size()){
+            if (s[i]==a) break;
+            i++;
+        }
+        i++;
+        while(i<s.size()){
+            if (s[i]>a) return s[i];
+            else i++;
+        }
+        return -1;
+    }
+};
