@@ -1,0 +1,21 @@
+//https://leetcode.com/problems/repeated-substring-pattern/
+
+
+class Solution {
+public:
+    bool repeatedSubstringPattern(string s) {
+       for(int i=1;i<=s.size()/2;i++)//имеет смысл проверять только половину строки тк больше половины разбиение быть не может
+            if(check(s, i)) return true;
+        return false;
+    }
+    
+    bool check(string s, int n){
+        if(s.length()%n!=0) return false;//оно просто не уместится из-за длины
+        int size=s.size()/n;
+        for(int i=1; i<size;i++){
+          if(s.substr(0,n)!=s.substr(i*n,n)) return false;
+        }
+       return true;
+
+    }
+};
