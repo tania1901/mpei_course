@@ -1,0 +1,21 @@
+//https://leetcode.com/problems/happy-number/
+
+
+class Solution {
+public:
+    bool isHappy(int n) {
+      int helper1=n;
+        int helper2=0;
+        do{
+        while(helper1>0){
+            helper2+=pow(helper1%10, 2);
+            helper1/=10;
+        }
+        
+        helper1=helper2;
+        helper2=0;
+    } while(helper1!=1&&helper1!=4);//на просторах обсуждений было найдено что несчастливое всегда имеет 4
+    if (helper1==1) return true;
+        return false;
+    }
+};
