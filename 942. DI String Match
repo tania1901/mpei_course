@@ -1,0 +1,15 @@
+//https://leetcode.com/problems/di-string-match/
+
+
+class Solution {
+public:
+    vector<int> diStringMatch(string S) {
+        int n = S.size();
+        vector<int> res(n + 1);
+        int j=n;
+        for (int i = n; i>0; i--) {
+            res[i] =  S[i-1] == 'D' ? (res[0]++) : (j--);
+        }
+        return res; 
+    }
+};
