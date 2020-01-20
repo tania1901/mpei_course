@@ -1,0 +1,47 @@
+//https://leetcode.com/problems/magic-squares-in-grid/
+
+class Solution {
+public:
+    int numMagicSquaresInside(vector<vector<int>>& grid) {
+        if (grid.size() < 3 || grid[0].size() < 3) return 0;
+        int res = 0;
+        for (int i = 0; i < grid.size() - 2; i++) 
+            for (int j = 0; j < grid[0].size() - 2; j++) 
+                if (doing(grid, i, j))  res++;//проверяем под решетку
+        return res;
+    }
+    
+    
+    bool doing(vector<vector<int>>& grid, int row, int col) {
+        int sumrow = 0, sumcol=0;
+        
+        for (int i = row; i < row + 3; i++) {
+            for (int j = col; j < col + 3; j++) {
+                if (grid[i][j] < 1 || grid[i][j] > 9) return false;
+                sumrow += grid[i][j];
+            }
+            if (sumrow != 15) return false;//сумма одинакова))
+            else sumrow = 0;
+        }    
+        
+        for (int i = col; i < col + 3; i++) {
+            for (int j = row; j < row + 3; j++) {
+                if (grid[j][i] < 1 || grid[j][i] > 9)return false;
+                sumcol += grid[j][i];   
+            }
+            if (sumcol != 15)return false;
+            else sumcol = 0;
+        }  
+        
+        if (grid[row][col] + grid[row + 1][col + 1] + grid[row + 2][col + 2] != 15||grid[row][col + 2] + grid[row + 1][col + 1] + grid[row + 2][col] != 15)return false;
+        
+        vector<int>helper(9,0);//посчитаем повторы
+        for (int i = row; i < row + 3; i++)
+            for (int j = col; j < col + 3; j++) 
+                if (helper[grid[i][j]-1]!=0) return false;//цифирька уже есть
+                else helper[grid[i][j]-1]++;
+        
+        
+        return true;
+    }
+};
